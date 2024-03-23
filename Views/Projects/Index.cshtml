@@ -1,0 +1,49 @@
+﻿@model List<Projects>
+<div class="container">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Projects List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Projects" asp-action="Create" class="btn btn-primary ">
+                <i class="bi bi-plus-circle"></i> Create New Project
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped ">
+        <thead>
+            <tr>
+                <th>
+                    Project Name
+                </th>
+                <th>
+                    URL
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.OrderBy(u => u.Description))
+            {
+                <tr>
+                    <td>@obj.Name</td>
+                    <td>@obj.Description</td>
+                    <td>
+                        <div class="btn-group w-75 " role="group">
+                            <a asp-action="Edit" asp-controller="Projects" asp-route-id="@obj.Id " class="btn btn-primary">
+                                <i class="bi bi-pencil-square">Edit</i>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group w-75" role="group">
+                            <a asp-action="Delete" asp-controller="Projects" asp-route-id="@obj.Id" class="btn btn-primary">
+                                <i class="bi bi-trash3">Delete</i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
